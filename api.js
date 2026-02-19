@@ -23,7 +23,7 @@ export class AnimeService {
     );
     const json = await response.json();
 
-    const synopsis = anime.background;
+    const synopsis = anime.synopsis;
 
     const detail = { character: json, synopsis: synopsis };
     return detail;
