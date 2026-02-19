@@ -22,8 +22,8 @@ async function startShowing() {
     }
   });
   cardContainer.addEventListener("click", async () => {
-    if (event.target.classList.contains("card")) {
-      const cardLocation = event.target.id;
+    if (event.target.closest(".card")) {
+      const cardLocation = event.target.closest(".card").id;
       const detail = await animeService.getAnimeDetail(
         currentCards.data[cardLocation],
       );
