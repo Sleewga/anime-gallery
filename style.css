@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+  color: antiquewhite;
+}
+
+body {
+  height: 100vh;
+  background-color: #171717;
+  margin: 5rem;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  align-items: start;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #262626;
+}
