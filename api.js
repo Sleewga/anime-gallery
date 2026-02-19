@@ -16,6 +16,6 @@ export class AnimeService {
       this.#api + this.#animeSuffix + "?" + searchParams,
     );
     let json = await response.json();
-    return json.data;
+    return json;
   }
 }
