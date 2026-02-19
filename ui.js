@@ -2,8 +2,8 @@ export class UiManager {
   #cardContainer;
   #pageNav;
 
-  constructor(pageNav) {
-    this.#cardContainer = document.getElementById("anime-cards");
+  constructor(pageNav, cardContainer) {
+    this.#cardContainer = cardContainer;
     this.#pageNav = pageNav;
   }
 
@@ -30,9 +30,68 @@ export class UiManager {
       card.appendChild(info);
 
       card.classList.add("card");
+      card.id = i;
 
       this.#cardContainer.appendChild(card);
     }
+  }
+
+  showDetail(detail) {
+    const detailElement = document.createElement("div");
+
+    const synopsisTitle = document.createElement("h1");
+    synopsisTitle.innerText = "Synopsis:";
+    const synopsis = document.createElement("p");
+    synopsis.innerText = detail.synopsis;
+
+    detailElement.appendChild(synopsisTitle);
+    detailElement.appendChild(synopsis);
+
+    const charactersTitle = document.createElement("h1");
+    charactersTitle.innerText = "Characters:";
+
+    detailElement.appendChild(charactersTitle);
+
+    const charactersContainer = document.createElement("ul");
+    charactersContainer.classList.add("characters-container");
+    this.loadCharacters(charactersContainer, detail);
+
+    detailElement.appendChild(charactersContainer);
+    detailElement.classList.add("anime-detail");
+    this.addCloseButton(detailElement);
+
+    this.#cardContainer.appendChild(detailElement);
+  }
+
+  loadCharacters(charactersContainer, detail) {
+    for (let i = 0; i < detail.character.data.length; i++) {
+      const characterContainer = document.createElement("li");
+      const character = detail.character.data[i].character;
+
+      const image = document.createElement("img");
+      image.src = character.images.jpg.image_url;
+
+      const name = document.createElement("h3");
+      name.innerText = character.name;
+
+      characterContainer.appendChild(image);
+      characterContainer.appendChild(name);
+
+      charactersContainer.appendChild(characterContainer);
+    }
+  }
+
+  addCloseButton(parentElement) {
+    const closeButton = document.createElement("a");
+    closeButton.innerText = "x";
+    closeButton.classList.add("close-button");
+
+    parentElement.appendChild(closeButton);
+  }
+
+  closeDetail() {
+    const detail = document.querySelector(".anime-detail");
+    this.#cardContainer.removeChild(detail);
   }
 
   updateNavigation(currentPage, hasNextPage) {
@@ -45,8 +104,6 @@ export class UiManager {
 
     const thisPage = this.createPageNumElement(currentPage);
     thisPage.classList.add("current");
-    console.log(thisPage);
-    console.log(thisPage.classList);
     this.#pageNav.appendChild(thisPage);
 
     if (hasNextPage) {

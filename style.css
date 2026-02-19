@@ -8,13 +8,18 @@
 
 body {
   background-color: #171717;
-  margin: 5rem;
+
+  display: flex;
+  height: 100vh;
 }
 
 main {
+  margin: 5rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 2rem;
 }
 
@@ -46,4 +51,39 @@ main {
 .navigation > .current {
   color: red;
   cursor: default;
+}
+
+.anime-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  background-color: #262626;
+  border-radius: 1rem;
+  border: solid antiquewhite 5px;
+  padding: 2rem;
+}
+
+.characters-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  list-style: none;
+}
+
+.characters-container > li {
+  display: flex;
+  gap: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: red;
+  cursor: pointer;
 }

@@ -1,7 +1,5 @@
 export class AnimeService {
-  #api = "https://api.jikan.moe/v4/";
-  #animeSuffix = "anime";
-  #characterSuffix = "characters";
+  #api = "https://api.jikan.moe/v4/anime";
 
   async getAmountOfPages(maxCardsPerPage) {
     let response = await this.getAnimePage(1, maxCardsPerPage);
@@ -12,10 +10,22 @@ export class AnimeService {
   async getAnimePage(page, maxCardsPerPage) {
     const paramsObj = { page: page, limit: maxCardsPerPage };
     const searchParams = new URLSearchParams(paramsObj);
-    let response = await fetch(
-      this.#api + this.#animeSuffix + "?" + searchParams,
-    );
-    let json = await response.json();
+
+    const response = await fetch(this.#api + "?" + searchParams);
+    const json = await response.json();
+
     return json;
+  }
+
+  async getAnimeDetail(anime) {
+    const response = await fetch(
+      this.#api + "/" + anime.mal_id + "/characters",
+    );
+    const json = await response.json();
+
+    const synopsis = anime.background;
+
+    const detail = { character: json, synopsis: synopsis };
+    return detail;
   }
 }
