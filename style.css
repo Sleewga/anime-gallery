@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+  color: antiquewhite;
+}
+
+body {
+  background-color: #171717;
+
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+main {
+  margin: 5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem;
+  list-style: none;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: start;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #262626;
+  cursor: pointer;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation > a {
+  cursor: pointer;
+}
+
+.navigation > .current {
+  color: red;
+  cursor: default;
+}
+
+.anime-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  background-color: #262626;
+  border-radius: 1rem;
+  border: solid antiquewhite 5px;
+  padding: 2rem;
+  margin: 5rem;
+}
+
+.characters-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  list-style: none;
+}
+
+.characters-container img {
+  max-width: 20rem;
+  max-height: 20rem;
+}
+
+.characters-container > li {
+  display: flex;
+  gap: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: red;
+  cursor: pointer;
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+.pagination-container input[type="checkbox"] {
+  /* appearance: none; */
+  accent-color: antiquewhite;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.bottom-interaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.additional-settings > form {
+}
+
+.additional-settings > input {
+  width: 4rem;
+  background-color: #262626;
+}
