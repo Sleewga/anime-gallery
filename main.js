@@ -17,7 +17,7 @@ async function startShowing() {
   pageSetup();
   pageNav.addEventListener("click", async () => {
     if (event.target.name == "pageNum") {
-      currentPage = event.target.id;
+      currentPage = Number(event.target.id);
       pageSetup();
     }
   });
@@ -37,10 +37,10 @@ async function startShowing() {
 async function pageSetup() {
   const cards = await getCards();
   currentCards = cards;
-  const hasNextPage = cards.pagination.has_next_page;
+  const amountOfPages = cards.pagination.last_visible_page;
 
   uiManager.showCards(cards.data);
-  uiManager.updateNavigation(currentPage, hasNextPage);
+  uiManager.updateNavigation(currentPage, amountOfPages);
 }
 
 async function getCards() {

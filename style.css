@@ -37,6 +37,7 @@ main {
   padding: 2rem;
   border-radius: 1rem;
   background-color: #262626;
+  cursor: pointer;
 }
 
 .navigation {

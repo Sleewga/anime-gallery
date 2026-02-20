@@ -94,11 +94,14 @@ export class UiManager {
     this.#cardContainer.removeChild(detail);
   }
 
-  updateNavigation(currentPage, hasNextPage) {
+  updateNavigation(currentPage, maxPages) {
     this.#pageNav.innerHTML = "";
 
-    if (currentPage != 1) {
-      const previousPage = this.createPageNumElement(Number(currentPage) - 1);
+    for (let i = currentPage - 5; i < currentPage; i++) {
+      if (i < 1) {
+        continue;
+      }
+      const previousPage = this.createPageNumElement(i);
       this.#pageNav.appendChild(previousPage);
     }
 
@@ -106,10 +109,14 @@ export class UiManager {
     thisPage.classList.add("current");
     this.#pageNav.appendChild(thisPage);
 
-    if (hasNextPage) {
-      const nextPage = this.createPageNumElement(Number(currentPage) + 1);
+    for (let i = currentPage + 1; i <= currentPage + 4; i++) {
+      if (i > maxPages) {
+        break;
+      }
+      const nextPage = this.createPageNumElement(i);
       this.#pageNav.appendChild(nextPage);
     }
+    console.log("---");
   }
 
   createPageNumElement(num) {
