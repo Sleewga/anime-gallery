@@ -52,7 +52,7 @@ function startAutoScrolling() {
   autoScrollInterval = setInterval(() => {
     currentPage++;
     pageSetup();
-  }, 1000);
+  }, 5000);
 }
 
 function stopAutoScrolling() {
