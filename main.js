@@ -18,6 +18,7 @@ let autoScrollInterval = null;
 
 let cachedPages = [];
 
+loadFromCache();
 cardsPerPageSetup();
 await startShowing();
 
@@ -93,8 +94,8 @@ async function getCards() {
   let animeCards = getCardsFromCache();
   if (!animeCards) {
     animeCards = await animeService.getAnimePage(currentPage, maxCardsPerPage);
-
-    cachedPages.push(animeCards);
+    console.log("api");
+    addToCache(animeCards);
   }
   return animeCards;
 }
@@ -106,11 +107,21 @@ function getCardsFromCache() {
       pagination.current_page == currentPage &&
       pagination.items.per_page == maxCardsPerPage
     ) {
+      console.log("cache");
       return cachedPages[i];
     }
   }
   return null;
 }
-// function addToCache(animeCards) {
-//
-// }
+
+function addToCache(animeCards) {
+  cachedPages.push(animeCards);
+  window.localStorage.setItem("cache", JSON.stringify(cachedPages));
+}
+
+function loadFromCache() {
+  const loaded = JSON.parse(window.localStorage.getItem("cache"));
+  if (loaded) {
+    cachedPages = loaded;
+  }
+}
