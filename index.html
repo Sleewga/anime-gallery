@@ -9,12 +9,15 @@
   <body>
     <main>
       <ul id="anime-cards" class="card-container"></ul>
-      <section class="pagination-container">
-        <nav id="page-nav" class="navigation"></nav>
-        <div class="auto-scroll-container">
-          <!-- <label for="">Autoscroll</label> -->
+      <section class="bottom-interaction">
+        <section class="pagination-container">
+          <nav id="page-nav" class="navigation"></nav>
           <input type="checkbox" name="auto-scroll" />
-        </div>
+        </section>
+        <section class="additional-settings">
+          <!-- <label for="">Autoscroll</label> -->
+          <input type="number" name="cards-per-page" max="24" min="1" />
+        </section>
       </section>
     </main>
     <script src="main.js" type="module"></script>

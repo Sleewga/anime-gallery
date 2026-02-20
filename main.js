@@ -4,17 +4,33 @@ import { UiManager } from "./ui.js";
 const pageNav = document.getElementById("page-nav");
 const cardContainer = document.getElementById("anime-cards");
 const autoScroll = document.getElementsByName("auto-scroll")[0];
+const amountOfCards = document.getElementsByName("cards-per-page")[0];
 
 const animeService = new AnimeService();
 const uiManager = new UiManager(pageNav, cardContainer);
 
-const maxCardsPerPage = 3;
 let currentPage = 1;
 let currentCards = [];
 
+let maxCardsPerPage = 3;
+amountOfCards.value = maxCardsPerPage;
+console.log(maxCardsPerPage);
+console.log(amountOfCards.value);
 let autoScrollInterval = null;
 
+cardsPerPageSetup();
 await startShowing();
+
+function cardsPerPageSetup() {
+  amountOfCards.addEventListener("change", () => {
+    if (event.target.name == "cards-per-page") {
+      if (event.target.value < 25 && event.target.value > 0) {
+        maxCardsPerPage = event.target.value;
+        pageSetup();
+      }
+    }
+  });
+}
 
 async function startShowing() {
   pageSetup();

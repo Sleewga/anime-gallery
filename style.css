@@ -65,6 +65,7 @@ main {
   border-radius: 1rem;
   border: solid antiquewhite 5px;
   padding: 2rem;
+  margin: 5rem;
 }
 
 .characters-container {
@@ -96,17 +97,33 @@ main {
   cursor: pointer;
 }
 
-.auto-scroll-container {
+.pagination-container {
   text-align: center;
 }
 
-.auto-scroll-container input {
+.pagination-container input[type="checkbox"] {
   /* appearance: none; */
   accent-color: antiquewhite;
 }
 
 .pagination-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
+}
+
+.bottom-interaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.additional-settings > form {
+}
+
+.additional-settings > input {
+  width: 4rem;
+  background-color: #262626;
 }

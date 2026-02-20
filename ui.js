@@ -37,6 +37,8 @@ export class UiManager {
   }
 
   showDetail(detail) {
+    this.closeDetail();
+    document.documentElement.scrollTop = 0;
     const detailElement = document.createElement("div");
 
     const synopsisTitle = document.createElement("h1");
@@ -91,7 +93,9 @@ export class UiManager {
 
   closeDetail() {
     const detail = document.querySelector(".anime-detail");
-    this.#cardContainer.removeChild(detail);
+    if (detail) {
+      this.#cardContainer.removeChild(detail);
+    }
   }
 
   updateNavigation(currentPage, maxPages) {
