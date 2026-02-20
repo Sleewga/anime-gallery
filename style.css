@@ -10,6 +10,7 @@ body {
   background-color: #171717;
 
   display: flex;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -28,6 +29,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 5rem;
   list-style: none;
+  width: 100%;
 }
 
 .card {
@@ -70,6 +72,11 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   list-style: none;
+}
+
+.characters-container img {
+  max-width: 20rem;
+  max-height: 20rem;
 }
 
 .characters-container > li {
