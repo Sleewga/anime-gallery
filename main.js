@@ -3,6 +3,7 @@ import { UiManager } from "./ui.js";
 
 const pageNav = document.getElementById("page-nav");
 const cardContainer = document.getElementById("anime-cards");
+const autoScroll = document.getElementsByName("auto-scroll")[0];
 
 const animeService = new AnimeService();
 const uiManager = new UiManager(pageNav, cardContainer);
@@ -11,10 +12,13 @@ const maxCardsPerPage = 3;
 let currentPage = 1;
 let currentCards = [];
 
+let autoScrollInterval = null;
+
 await startShowing();
 
 async function startShowing() {
   pageSetup();
+  autoScrollSetup();
   pageNav.addEventListener("click", async () => {
     if (event.target.name == "pageNum") {
       currentPage = Number(event.target.id);
@@ -34,10 +38,36 @@ async function startShowing() {
   });
 }
 
+function autoScrollSetup() {
+  autoScroll.addEventListener("click", async () => {
+    if (event.target.checked == true) {
+      startAutoScrolling();
+    } else {
+      stopAutoScrolling();
+    }
+  });
+}
+
+function startAutoScrolling() {
+  autoScrollInterval = setInterval(() => {
+    currentPage++;
+    pageSetup();
+  }, 1000);
+}
+
+function stopAutoScrolling() {
+  clearInterval(autoScrollInterval);
+  autoScrollInterval = null;
+}
+
 async function pageSetup() {
   const cards = await getCards();
   currentCards = cards;
   const amountOfPages = cards.pagination.last_visible_page;
+
+  if (currentPage > amountOfPages) {
+    currentPage--;
+  }
 
   uiManager.showCards(cards.data);
   uiManager.updateNavigation(currentPage, amountOfPages);

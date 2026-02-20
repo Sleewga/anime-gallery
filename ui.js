@@ -116,7 +116,6 @@ export class UiManager {
       const nextPage = this.createPageNumElement(i);
       this.#pageNav.appendChild(nextPage);
     }
-    console.log("---");
   }
 
   createPageNumElement(num) {
